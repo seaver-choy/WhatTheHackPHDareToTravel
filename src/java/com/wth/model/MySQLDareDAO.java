@@ -56,6 +56,26 @@ public class MySQLDareDAO implements DareDAO{
 		return ret.toArray(new Dare[ret.size()]);
 	}
         
+        public Dare[] searchByAccount(Account acct) {
+            ArrayList<Dare> ret = null;
+          
+                    String sql = "SELECT * FROM challenge_dares D, accounts A WHERE "
+                            + "D.username ='" + acct.getUsername();
+                    Dare[] temp = dareQuery(sql);
+                    
+                    ArrayList<Dare> ns = new ArrayList<>();
+                    for(int j = 0; j < temp.length; j++){
+                    	ns.add(temp[j]);
+                    }
+                    
+                    if (ret == null) {
+                    	ret = ns;
+                    } else {
+                    	ret.retainAll(ns);
+                    }
+                    return ret.toArray(new Dare[ret.size()]);
+                }
+                
         private Dare[] dareQuery(String sql) {
 		java.util.List<Dare> ret = new ArrayList<>();
 		try (Statement stmt = conn.createStatement()) {
