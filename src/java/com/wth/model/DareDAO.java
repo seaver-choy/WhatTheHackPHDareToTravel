@@ -6,6 +6,7 @@ public interface DareDAO {
 	public Dare getDare(String dareID);
         public Dare[] getDares();
         public Dare[] searchByTag(Tag[] tag);
+        public Dare[] searchByAccount(Account acct);
         public int addDare(Dare dare) throws SQLException;
         public void addToRace(AmazingRace race, Dare dare) throws SQLException;
         public void cancelDare(Dare dare);
